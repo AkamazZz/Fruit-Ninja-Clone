@@ -33,18 +33,15 @@ public class Fruit : MonoBehaviour
         Destroy(gameObject);
         Destroy(instance, 4);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        Blade blade = collision.GetComponent<Blade>();
+        if (!blade)
         {
-            CreateSlicedFruit();
+            return;
         }
+        CreateSlicedFruit();
     }
 }
