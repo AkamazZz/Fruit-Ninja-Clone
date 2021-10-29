@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Blade : MonoBehaviour
 {
-    private Rigidbody2D _rigidBody;
+    private Rigidbody _rigidBody;
     // Start is called before the first frame update
     void Awake()
     {
-        _rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

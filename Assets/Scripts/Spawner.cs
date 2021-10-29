@@ -54,8 +54,8 @@ public class Spawner : MonoBehaviour
             int placeToUse = Random.Range(0, placeListLenght);
             isEqualToPrevious(ref placeToUse, previousPlace, placeListLenght);
             Transform place = _spawnPlaces[placeToUse];
-            GameObject fruit = Instantiate(_prefabToSpawn, place.transform.position, place.transform.rotation);
-            fruit.GetComponent<Rigidbody2D>().AddForce(place.up * Random.Range(_minForce,_maxForce), ForceMode2D.Impulse);
+            GameObject fruit = Instantiate(_prefabToSpawn, place.transform.position, _prefabToSpawn.transform.rotation);
+            fruit.GetComponent<Rigidbody>().AddForce(place.up * Random.Range(_minForce,_maxForce), ForceMode.Impulse);
             Debug.Log("Brih");
             Destroy(fruit,6);
         }
