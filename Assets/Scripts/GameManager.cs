@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,25 +9,47 @@ public class GameManager : MonoBehaviour
 {
     [Header("Score elements")]
     [SerializeField] private int _score;
+    private int _highestScore;
     [SerializeField] private Text _scoreText;
-    [SerializeField] private Text _highScoreText;
+    [SerializeField] private Text _highestScoreText;
     [Header("Game over elements")]
     [SerializeField] private GameObject _gameOverPanel;
 
+
+    private void Start()
+    {
+        GetHighestScore();
+    }
+    private void GetHighestScore()
+    {
+        if (PlayerPrefs.HasKey("Highscore")) { 
+            _highestScore = PlayerPrefs.GetInt("Highscore");
+
+            _highestScoreText.text = "Best: " + _highestScore.ToString();
+        }
+    }
     public void IncreaseScore(int addedPoints)
     {
         _score += addedPoints;
-        _scoreText.text = _score.ToString();
+        _scoreText.text = "Best: " + _score.ToString();
+        if(_score > _highestScore)
+        {
+            PlayerPrefs.SetInt("Highscore", _score);
+            _highestScoreText.text = "Best: " +  _score.ToString();
+        }
     }
     public void OnBombHit()
     {
         Debug.Log("Bomb hit");
         _gameOverPanel.SetActive(true);
-        Time.timeScale = 0.1f;
-        Time.fixedDeltaTime =  0.002f;
+        Time.timeScale = 0;
+            
+
     }
     public void RespawnScene()
     {
+        Debug.Log($"{SceneManager.GetActiveScene().name} is respawned");
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

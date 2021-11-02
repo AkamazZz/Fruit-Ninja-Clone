@@ -424,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _score: 0
   _scoreText: {fileID: 2050206213}
-  _highScoreText: {fileID: 712441628}
+  _highestScoreText: {fileID: 712441628}
   _gameOverPanel: {fileID: 1019238858}
 --- !u!4 &613820867
 Transform:
@@ -766,9 +766,9 @@ MonoBehaviour:
   _chanceToSpawnBomb: 10
   _numOfSpawnPlaces: 6
   _spawnPlaces: []
-  _minSpawnRate: 0.6
-  _maxSpawnRate: 1.5
-  _minForce: 10
+  _minSpawnRate: 0.4
+  _maxSpawnRate: 1
+  _minForce: 14
   _maxForce: 22
 --- !u!4 &908237623
 Transform:
@@ -836,7 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: -1
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
