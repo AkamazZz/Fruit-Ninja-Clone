@@ -99,6 +99,7 @@ MonoBehaviour:
   _slicedFruitPrefab: {fileID: 3251645634777774466, guid: 05e491780866aa64fbdd20e759128e88, type: 3}
   _explosionRadius: 5
   _type: 0
+  _scoreAmount: 3
 --- !u!65 &6206319865064109950
 BoxCollider:
   m_ObjectHideFlags: 0

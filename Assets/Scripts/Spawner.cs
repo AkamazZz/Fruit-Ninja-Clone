@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefabToSpawn;
+    [SerializeField] private GameObject[] _fruitToSpawn;
+    [SerializeField] private GameObject _bombPrefab;
+    [SerializeField] private int _chanceToSpawnBomb = 10;
     [SerializeField] private int _numOfSpawnPlaces = 1;
     [SerializeField] private List<Transform> _spawnPlaces;
     [SerializeField] private float _minSpawnRate = 0.3f;
@@ -27,12 +29,25 @@ public class Spawner : MonoBehaviour
 
         }
     }
+    
     void Start()
     {
         createSpawnPlaces();
         StartCoroutine(SpawnFruits());
     }
 
+    private GameObject GetFruitOrBomb()
+    {
+        float randomRange = Random.Range(0, 100);
+        if(randomRange <= _chanceToSpawnBomb)
+        {
+            return _bombPrefab;
+        }
+        else
+        {
+            return _fruitToSpawn[Random.Range(0,_fruitToSpawn.Length)];
+        }
+    }
     private void isEqualToPrevious(ref int CurNumber, int prevNumber, int lenght)
     {
         if(prevNumber == CurNumber && CurNumber != lenght)
@@ -54,10 +69,11 @@ public class Spawner : MonoBehaviour
             int placeToUse = Random.Range(0, placeListLenght);
             isEqualToPrevious(ref placeToUse, previousPlace, placeListLenght);
             Transform place = _spawnPlaces[placeToUse];
-            GameObject fruit = Instantiate(_prefabToSpawn, place.transform.position, _prefabToSpawn.transform.rotation);
-            fruit.GetComponent<Rigidbody>().AddForce(place.up * Random.Range(_minForce,_maxForce), ForceMode.Impulse);
+            GameObject prefabToSpawn = GetFruitOrBomb();
+            GameObject spawnObject = Instantiate(prefabToSpawn, place.transform.position, prefabToSpawn.transform.rotation);
+            spawnObject.GetComponent<Rigidbody>().AddForce(place.up * Random.Range(_minForce,_maxForce), ForceMode.Impulse);
             Debug.Log("Brih");
-            Destroy(fruit,6);
+            Destroy(spawnObject,6);
         }
     }
     // Update is called once per frame

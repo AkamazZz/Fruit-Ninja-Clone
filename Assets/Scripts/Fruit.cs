@@ -19,11 +19,12 @@ public class Fruit : MonoBehaviour
     [SerializeField] private GameObject _slicedFruitPrefab;
     [SerializeField] private float _explosionRadius = 5f;
     [SerializeField] private Type _type;
-    [SerializeField] private int _scoreAmount;
+    [SerializeField] private int _scoreAmount = 3;
     private GameManager _gameManager;
 
     public void CreateSlicedFruit()
     {
+        
         GameObject instance = Instantiate(_slicedFruitPrefab, transform.position, transform.rotation);
         Rigidbody[] rigidBodyOnSliced = instance.transform.GetComponentsInChildren<Rigidbody>();
 
