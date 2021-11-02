@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Blade blade = other.GetComponent<Blade>();
+        if (!blade)
+        {
+            return;
+        }
+        FindObjectOfType<GameManager>().OnBombHit();
     }
 }
