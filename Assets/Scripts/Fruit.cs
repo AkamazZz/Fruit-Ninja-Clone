@@ -20,6 +20,9 @@ public class Fruit : MonoBehaviour
     [SerializeField] private float _explosionRadius = 5f;
     [SerializeField] private Type _type;
     [SerializeField] private int _scoreAmount = 3;
+
+    private Vector3 _lastMousePosition;
+    private Vector3 _mouseVecocity;
     private GameManager _gameManager;
 
     public void CreateSlicedFruit()
@@ -27,7 +30,7 @@ public class Fruit : MonoBehaviour
         
         GameObject instance = Instantiate(_slicedFruitPrefab, transform.position, transform.rotation);
         Rigidbody[] rigidBodyOnSliced = instance.transform.GetComponentsInChildren<Rigidbody>();
-
+        _gameManager.PlayRandomSliceSound();
 
         foreach(Rigidbody body in rigidBodyOnSliced)
         {

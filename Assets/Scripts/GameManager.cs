@@ -14,10 +14,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text _highestScoreText;
     [Header("Game over elements")]
     [SerializeField] private GameObject _gameOverPanel;
+    [Header("Sounds")]
+    [SerializeField] private AudioClip[] _sliceSounds;
+    private AudioSource _audioSource;
 
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         GetHighestScore();
     }
     private void GetHighestScore()
@@ -51,5 +55,9 @@ public class GameManager : MonoBehaviour
         Debug.Log($"{SceneManager.GetActiveScene().name} is respawned");
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void PlayRandomSliceSound()
+    {
+        _audioSource.PlayOneShot(_sliceSounds[0]);
     }
 }
