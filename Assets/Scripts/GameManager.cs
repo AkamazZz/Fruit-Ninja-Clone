@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         if(_score > _highestScore)
         {
             PlayerPrefs.SetInt("Highscore", _score);
-            _highestScoreText.text = "Best: " +  _score.ToString();
+            _highestScoreText.text =  _score.ToString();
         }
     }
     public void OnBombHit()
