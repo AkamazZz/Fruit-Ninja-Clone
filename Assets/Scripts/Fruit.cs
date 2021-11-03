@@ -21,8 +21,6 @@ public class Fruit : MonoBehaviour
     [SerializeField] private Type _type;
     [SerializeField] private int _scoreAmount = 3;
 
-    private Vector3 _lastMousePosition;
-    private Vector3 _mouseVecocity;
     private GameManager _gameManager;
 
     public void CreateSlicedFruit()
